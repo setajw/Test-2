@@ -68,41 +68,6 @@ const projects = [
   }
 ];
 
-const resumeData = {
-  experience: [
-    {
-      role: "Senior Architect",
-      company: "AURA Architecture",
-      period: "2018 - Present",
-      description: "Leading design teams for international high-profile residential and commercial projects."
-    },
-    {
-      role: "Project Architect",
-      company: "Minimalist Design Studio",
-      period: "2014 - 2018",
-      description: "Focused on brutalist residential projects across Northern Europe."
-    },
-    {
-      role: "Junior Designer",
-      company: "Urban Form Lab",
-      period: "2012 - 2014",
-      description: "Assisted in the development of public space masterplans."
-    }
-  ],
-  education: [
-    {
-      degree: "Master of Architecture",
-      school: "The Royal Danish Academy",
-      year: "2012"
-    },
-    {
-      degree: "Bachelor of Design",
-      school: "Oslo School of Architecture",
-      year: "2010"
-    }
-  ]
-};
-
 export default function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [selectedProject, setSelectedProject] = useState<typeof projects[0] | null>(null);
@@ -136,20 +101,21 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#050505] text-white selection:bg-[#c5a059] selection:text-black" ref={containerRef}>
+    <div className="min-h-screen bg-[#050505] text-white selection:bg-[#9caf88] selection:text-black" ref={containerRef}>
       {/* Navigation */}
       <nav className="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-6 py-8 md:px-12">
         <motion.div 
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
-          className="text-xl font-bold tracking-tighter"
+          className="flex flex-col"
         >
-          AURA<span className="text-[#c5a059]">.</span>
+          <span className="text-xl font-bold tracking-tighter leading-none uppercase">Seta Whitney</span>
+          <span className="text-[10px] uppercase tracking-[0.4em] text-[#9caf88] font-medium leading-none mt-1">Architecture</span>
         </motion.div>
         
         <div className="hidden md:flex space-x-12 text-xs uppercase tracking-[0.3em] font-medium">
-          {["Work", "Studio", "Resume", "Contact"].map((item) => (
-            <a key={item} href={`#${item.toLowerCase()}`} className="hover:text-[#c5a059] transition-colors">
+          {["Projects", "Precedent Studies", "Other Works", "Bio", "Contact"].map((item) => (
+            <a key={item} href={`#${item.toLowerCase().replace(/\s+/g, '-')}`} className="hover:text-[#9caf88] transition-colors">
               {item}
             </a>
           ))}
@@ -170,12 +136,12 @@ export default function App() {
         transition={{ type: "spring", damping: 25, stiffness: 200 }}
         className="fixed inset-0 bg-black z-40 flex flex-col justify-center items-center space-y-8 text-3xl font-serif italic"
       >
-        {["Work", "Studio", "Resume", "Contact"].map((item) => (
+        {["Projects", "Precedent Studies", "Other Works", "Bio", "Contact"].map((item) => (
           <a 
             key={item} 
-            href={`#${item.toLowerCase()}`} 
+            href={`#${item.toLowerCase().replace(/\s+/g, '-')}`} 
             onClick={() => setIsMenuOpen(false)}
-            className="hover:text-[#c5a059]"
+            className="hover:text-[#9caf88]"
           >
             {item}
           </a>
@@ -188,33 +154,15 @@ export default function App() {
           style={{ opacity, scale }}
           className="relative z-10"
         >
-          <motion.p 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
-            className="text-[#c5a059] uppercase tracking-[0.5em] text-[10px] md:text-xs mb-6 font-semibold"
-          >
-            Architecture & Spatial Design
-          </motion.p>
           <motion.h1 
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4 }}
             className="text-serif text-6xl md:text-[10vw] leading-[0.9] tracking-tighter mb-8"
           >
-            Defining the <br />
-            <span className="italic">Silent</span> Void.
+            Seta Whitney <br />
+            <span className="italic text-[0.4em] tracking-[0.2em] block mt-4 uppercase font-sans font-semibold text-[#9caf88]">Architecture</span>
           </motion.h1>
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.8 }}
-            className="flex items-center space-x-4 group cursor-pointer"
-            onClick={() => document.getElementById('work')?.scrollIntoView({ behavior: 'smooth' })}
-          >
-            <div className="w-12 h-[1px] bg-white group-hover:w-20 transition-all duration-500"></div>
-            <span className="text-xs uppercase tracking-widest">Explore Projects</span>
-          </motion.div>
         </motion.div>
 
         {/* Background Subtle Element */}
@@ -224,13 +172,12 @@ export default function App() {
       </section>
 
       {/* Projects Section */}
-      <section id="work" className="py-24 px-6 md:px-12">
+      <section id="projects" className="py-24 px-6 md:px-12">
         <div className="flex flex-col md:flex-row justify-between items-end mb-20">
           <div className="max-w-xl">
-            <h2 className="text-serif text-4xl md:text-6xl mb-6 italic">Selected Works</h2>
+            <h2 className="text-serif text-4xl md:text-6xl mb-6 italic uppercase tracking-tighter">Projects</h2>
             <p className="text-gray-400 text-sm leading-relaxed">
-              A collection of structures that challenge the boundaries between environment and inhabitant. 
-              Each project is a dialogue between light, shadow, and materiality.
+              [placeholder text]
             </p>
           </div>
           <div className="mt-8 md:mt-0 text-[10px] uppercase tracking-[0.3em] text-gray-500">
@@ -298,7 +245,7 @@ export default function App() {
             >
               <button 
                 onClick={() => setSelectedProject(null)}
-                className="absolute top-0 right-0 z-10 p-4 text-white hover:text-[#c5a059]"
+                className="absolute top-0 right-0 z-10 p-4 text-white hover:text-[#9caf88]"
               >
                 <X size={32} />
               </button>
@@ -315,10 +262,10 @@ export default function App() {
                 />
                 
                 <div className="absolute inset-0 flex items-center justify-between px-4 opacity-0 group-hover:opacity-100 transition-opacity">
-                  <button onClick={prevImage} className="w-12 h-12 rounded-full bg-black/50 flex items-center justify-center hover:bg-[#c5a059] transition-colors">
+                  <button onClick={prevImage} className="w-12 h-12 rounded-full bg-black/50 flex items-center justify-center hover:bg-[#9caf88] transition-colors">
                     <ChevronLeft size={24} />
                   </button>
-                  <button onClick={nextImage} className="w-12 h-12 rounded-full bg-black/50 flex items-center justify-center hover:bg-[#c5a059] transition-colors">
+                  <button onClick={nextImage} className="w-12 h-12 rounded-full bg-black/50 flex items-center justify-center hover:bg-[#9caf88] transition-colors">
                     <ChevronRight size={24} />
                   </button>
                 </div>
@@ -327,14 +274,14 @@ export default function App() {
                   {selectedProject.gallery.map((_, i) => (
                     <div 
                       key={i} 
-                      className={`w-2 h-2 rounded-full transition-all ${i === currentGalleryIndex ? 'bg-[#c5a059] w-6' : 'bg-white/30'}`}
+                      className={`w-2 h-2 rounded-full transition-all ${i === currentGalleryIndex ? 'bg-[#9caf88] w-6' : 'bg-white/30'}`}
                     />
                   ))}
                 </div>
               </div>
 
               <div className="w-full md:w-80 flex flex-col justify-center">
-                <span className="text-[#c5a059] text-[10px] uppercase tracking-[0.5em] font-bold block mb-4">{selectedProject.category}</span>
+                <span className="text-[#9caf88] text-[10px] uppercase tracking-[0.5em] font-bold block mb-4">{selectedProject.category}</span>
                 <h2 className="text-serif text-4xl mb-6">{selectedProject.title}</h2>
                 <p className="text-gray-400 text-sm leading-relaxed mb-8">
                   {selectedProject.description}
@@ -355,32 +302,68 @@ export default function App() {
         )}
       </AnimatePresence>
 
-      {/* Studio / About Section */}
-      <section id="studio" className="py-32 px-6 md:px-12 bg-[#0a0a0a]">
+      {/* Precedent Studies Section */}
+      <section id="precedent-studies" className="py-32 px-6 md:px-12 bg-[#050505] border-t border-white/5">
+        <div className="max-w-6xl mx-auto">
+          <div className="flex flex-col md:flex-row justify-between items-end mb-20">
+            <div className="max-w-xl">
+              <span className="text-[#9caf88] text-[10px] uppercase tracking-[0.5em] font-bold block mb-6">Academic Research</span>
+              <h2 className="text-serif text-4xl md:text-6xl mb-6 italic uppercase tracking-tighter">Precedent Studies</h2>
+              <p className="text-gray-400 text-sm leading-relaxed">
+                A collection of analytical studies exploring historical and contemporary architectural precedents. These works focus on understanding spatial hierarchies, structural systems, and material logic.
+              </p>
+            </div>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {[1, 2, 3].map((i) => (
+              <motion.div 
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                className="group cursor-pointer"
+              >
+                <div className="relative aspect-[3/4] overflow-hidden bg-zinc-900 mb-4">
+                  <img 
+                    src={`https://picsum.photos/seed/study${i}/800/1200`} 
+                    alt={`Study ${i}`}
+                    className="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-all duration-700 grayscale group-hover:grayscale-0"
+                    referrerPolicy="no-referrer"
+                  />
+                </div>
+                <h3 className="text-serif text-xl mb-1 italic">Study Analysis 0{i}</h3>
+                <p className="text-[10px] uppercase tracking-widest text-gray-500">Analytical Drawing — 2024</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Other Works Section */}
+      <section id="other-works" className="py-32 px-6 md:px-12 bg-[#0a0a0a]">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
           <div className="relative aspect-square md:aspect-video lg:aspect-square overflow-hidden">
             <img 
               src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2069&auto=format&fit=crop" 
-              alt="Studio" 
+              alt="Other Works" 
               className="w-full h-full object-cover grayscale opacity-50"
               referrerPolicy="no-referrer"
             />
             <div className="absolute inset-0 border-[20px] border-[#0a0a0a]"></div>
           </div>
           <div>
-            <span className="text-[#c5a059] text-[10px] uppercase tracking-[0.5em] font-bold block mb-6">The Studio</span>
-            <h2 className="text-serif text-4xl md:text-6xl mb-8 leading-tight">
-              We believe in architecture that <span className="italic">breathes</span>.
-            </h2>
+            <span className="text-[#9caf88] text-[10px] uppercase tracking-[0.5em] font-bold block mb-6">Other Works</span>
             <div className="space-y-6 text-gray-400 text-sm leading-relaxed max-w-lg">
               <p>
-                Founded in 2018, AURA is an international architecture firm focused on the intersection of minimalist aesthetics and sustainable innovation.
+                Beyond architectural practice, this collection explores the intersection of spatial thinking and artistic expression. It includes a diverse range of work that I have worked on including art, sketches, and more.
               </p>
               <p>
-                Our process is reductive. We remove the noise to find the essence of a space, utilizing raw materials like exposed concrete, charred wood, and structural glass to create environments that evoke emotion.
+                These pieces represent a continuous exploration of form, light, and shadow, serving as both a foundation for and a departure from structural constraints.
               </p>
-              <button className="pt-4 flex items-center space-x-4 text-white hover:text-[#c5a059] transition-colors group">
-                <span className="text-xs uppercase tracking-widest font-semibold">Our Philosophy</span>
+              <button className="pt-4 flex items-center space-x-4 text-white hover:text-[#9caf88] transition-colors group">
+                <span className="text-xs uppercase tracking-widest font-semibold">View Collection</span>
                 <ArrowRight size={14} className="group-hover:translate-x-2 transition-transform" />
               </button>
             </div>
@@ -388,62 +371,32 @@ export default function App() {
         </div>
       </section>
 
-      {/* Resume Section */}
-      <section id="resume" className="py-32 px-6 md:px-12 bg-[#050505]">
+      {/* Bio Section */}
+      <section id="bio" className="py-32 px-6 md:px-12 bg-[#050505]">
         <div className="max-w-6xl mx-auto">
-          <div className="flex flex-col md:flex-row justify-between items-start mb-20">
-            <div>
-              <span className="text-[#c5a059] text-[10px] uppercase tracking-[0.5em] font-bold block mb-6">Curriculum Vitae</span>
-              <h2 className="text-serif text-4xl md:text-6xl italic">Professional Journey</h2>
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-12 items-start">
+            <div className="md:col-span-4">
+              <span className="text-[#9caf88] text-[10px] uppercase tracking-[0.5em] font-bold block mb-6">The Designer</span>
+              <h2 className="text-serif text-4xl md:text-5xl italic leading-tight">Seta Whitney</h2>
             </div>
-            <button className="mt-8 md:mt-0 flex items-center space-x-3 bg-white text-black px-8 py-4 rounded-full hover:bg-[#c5a059] transition-colors group">
-              <Download size={18} />
-              <span className="text-xs uppercase tracking-widest font-bold">Download PDF</span>
-            </button>
-          </div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-24">
-            <div>
-              <h3 className="text-xs uppercase tracking-[0.3em] text-gray-500 mb-12 flex items-center">
-                <FileText size={14} className="mr-3" /> Experience
-              </h3>
-              <div className="space-y-16">
-                {resumeData.experience.map((exp, i) => (
-                  <div key={i} className="relative pl-8 border-l border-white/10">
-                    <div className="absolute top-0 left-[-5px] w-[10px] h-[10px] rounded-full bg-[#c5a059]" />
-                    <span className="text-[10px] text-gray-500 uppercase tracking-widest block mb-2">{exp.period}</span>
-                    <h4 className="text-xl font-serif mb-1">{exp.role}</h4>
-                    <p className="text-[#c5a059] text-xs uppercase tracking-widest mb-4">{exp.company}</p>
-                    <p className="text-gray-400 text-sm leading-relaxed">{exp.description}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div>
-              <h3 className="text-xs uppercase tracking-[0.3em] text-gray-500 mb-12 flex items-center">
-                <FileText size={14} className="mr-3" /> Education & Recognition
-              </h3>
-              <div className="space-y-12">
-                {resumeData.education.map((edu, i) => (
-                  <div key={i} className="group">
-                    <span className="text-[10px] text-gray-500 uppercase tracking-widest block mb-2">{edu.year}</span>
-                    <h4 className="text-xl font-serif mb-1 group-hover:text-[#c5a059] transition-colors">{edu.degree}</h4>
-                    <p className="text-gray-400 text-xs uppercase tracking-widest">{edu.school}</p>
-                  </div>
-                ))}
-                
-                <div className="pt-12 border-t border-white/5">
-                  <h4 className="text-xs uppercase tracking-widest text-gray-500 mb-6">Core Competencies</h4>
-                  <div className="flex flex-wrap gap-3">
-                    {["Master Planning", "BIM Management", "Sustainable Design", "Parametric Modeling", "Interior Architecture"].map((skill) => (
-                      <span key={skill} className="px-4 py-2 border border-white/10 text-[10px] uppercase tracking-widest hover:border-[#c5a059] transition-colors">
-                        {skill}
-                      </span>
-                    ))}
+            <div className="md:col-span-8">
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8 }}
+                className="space-y-8 text-gray-400 text-lg md:text-2xl font-light leading-relaxed"
+              >
+                <p>
+                  [placeholder text]
+                </p>
+                <div className="pt-8 flex flex-wrap gap-x-12 gap-y-6">
+                  <div>
+                    <span className="text-[10px] uppercase tracking-widest text-[#9caf88] block mb-2">Education</span>
+                    <p className="text-sm text-white">B.A. Arch, University of Maryland</p>
                   </div>
                 </div>
-              </div>
+              </motion.div>
             </div>
           </div>
         </div>
@@ -457,24 +410,24 @@ export default function App() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-20">
             <div className="flex flex-col items-center">
               <div className="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center mb-4">
-                <Mail size={20} className="text-[#c5a059]" />
+                <Mail size={20} className="text-[#9caf88]" />
               </div>
               <p className="text-[10px] uppercase tracking-widest text-gray-500 mb-2">Email</p>
-              <p className="text-sm">hello@aura-arch.com</p>
+              <p className="text-sm">setawhitney@gmail.com</p>
             </div>
             <div className="flex flex-col items-center">
               <div className="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center mb-4">
-                <MapPin size={20} className="text-[#c5a059]" />
+                <MapPin size={20} className="text-[#9caf88]" />
               </div>
               <p className="text-[10px] uppercase tracking-widest text-gray-500 mb-2">Location</p>
-              <p className="text-sm">124 Minimalist Way, Oslo</p>
+              <p className="text-sm">Maryland, USA</p>
             </div>
             <div className="flex flex-col items-center">
               <div className="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center mb-4">
-                <Linkedin size={20} className="text-[#c5a059]" />
+                <Linkedin size={20} className="text-[#9caf88]" />
               </div>
               <p className="text-[10px] uppercase tracking-widest text-gray-500 mb-2">Connect</p>
-              <p className="text-sm">@aura_architecture</p>
+              <p className="text-sm">linkedin.com/in/setawhitney</p>
             </div>
           </div>
 
@@ -488,7 +441,7 @@ export default function App() {
 
       {/* Footer */}
       <footer className="py-12 px-6 md:px-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center text-[10px] uppercase tracking-[0.2em] text-gray-600">
-        <p>© 2026 AURA Architecture. All Rights Reserved.</p>
+        <p>© 2026 Seta Whitney Architecture. All Rights Reserved.</p>
         <div className="flex space-x-8 mt-4 md:mt-0">
           <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
           <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
