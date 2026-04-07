@@ -11,12 +11,13 @@ import { useState, useRef, useEffect } from "react";
 const projects = [
   {
     id: 1,
-    title: "The Obsidian Pavilion",
+    title: "Le Corbusier's Pavilion",
+    subtitle: "Studio I | Professor Abrams",
     location: "Reykjavík, Iceland",
     year: "2024",
-    image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop",
+    image: "https://raw.githubusercontent.com/setajw/Test-2/27cd631c3bc85a41fb5ae774c6abcfdf84af76b1/Untitled-3.jpg",
     gallery: [
-      "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop",
+      "https://raw.githubusercontent.com/setajw/Test-2/27cd631c3bc85a41fb5ae774c6abcfdf84af76b1/Untitled-3.jpg",
       "https://images.unsplash.com/photo-1518005020250-68594f214602?q=80&w=2070&auto=format&fit=crop",
       "https://images.unsplash.com/photo-1470723710355-95304d8aece4?q=80&w=2070&auto=format&fit=crop",
       "https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=2070&auto=format&fit=crop"
@@ -27,6 +28,7 @@ const projects = [
   {
     id: 2,
     title: "Ethereal Heights",
+    subtitle: "",
     location: "Dubai, UAE",
     year: "2023",
     image: "https://images.unsplash.com/photo-1449156001935-d28bc1dc7281?q=80&w=2070&auto=format&fit=crop",
@@ -41,6 +43,7 @@ const projects = [
   {
     id: 3,
     title: "Monolith Cultural Center",
+    subtitle: "",
     location: "Berlin, Germany",
     year: "2023",
     image: "https://images.unsplash.com/photo-1511818966892-d7d671e672a2?q=80&w=2071&auto=format&fit=crop",
@@ -51,20 +54,6 @@ const projects = [
     ],
     category: "Public",
     description: "A brutalist masterpiece serving as a hub for contemporary art and community engagement in the heart of Berlin."
-  },
-  {
-    id: 4,
-    title: "Verdant Atrium",
-    location: "Singapore",
-    year: "2022",
-    image: "https://images.unsplash.com/photo-1487958449943-2429e8be8625?q=80&w=2070&auto=format&fit=crop",
-    gallery: [
-      "https://images.unsplash.com/photo-1487958449943-2429e8be8625?q=80&w=2070&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-153002096329a-8cd147e1741f?q=80&w=2070&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1558036117-15d82a90b9b1?q=80&w=2070&auto=format&fit=crop"
-    ],
-    category: "Mixed Use",
-    description: "A sustainable urban development that integrates lush greenery into every level of its commercial and residential spaces."
   }
 ];
 
@@ -101,7 +90,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#050505] text-white selection:bg-[#9caf88] selection:text-black" ref={containerRef}>
+    <div className="min-h-screen text-white selection:bg-[#9caf88] selection:text-black" ref={containerRef}>
       {/* Navigation */}
       <nav className="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-6 py-8 md:px-12">
         <motion.div 
@@ -114,7 +103,7 @@ export default function App() {
         </motion.div>
         
         <div className="hidden md:flex space-x-12 text-xs uppercase tracking-[0.3em] font-medium">
-          {["Projects", "Precedent Studies", "Other Works", "Bio", "Contact"].map((item) => (
+          {["Projects", "Precedent Studies", "Personal Work", "Bio", "Contact"].map((item) => (
             <a key={item} href={`#${item.toLowerCase().replace(/\s+/g, '-')}`} className="hover:text-[#9caf88] transition-colors">
               {item}
             </a>
@@ -136,7 +125,7 @@ export default function App() {
         transition={{ type: "spring", damping: 25, stiffness: 200 }}
         className="fixed inset-0 bg-black z-40 flex flex-col justify-center items-center space-y-8 text-3xl font-serif italic"
       >
-        {["Projects", "Precedent Studies", "Other Works", "Bio", "Contact"].map((item) => (
+        {["Projects", "Precedent Studies", "Personal Work", "Bio", "Contact"].map((item) => (
           <a 
             key={item} 
             href={`#${item.toLowerCase().replace(/\s+/g, '-')}`} 
@@ -208,13 +197,13 @@ export default function App() {
                   className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-700"
                   referrerPolicy="no-referrer"
                 />
-                <div className="absolute top-6 right-6 text-[10px] uppercase tracking-widest bg-black/50 backdrop-blur-md px-3 py-1 border border-white/10">
-                  {project.category}
-                </div>
               </div>
               <div className="flex justify-between items-start">
                 <div>
                   <h3 className="text-serif text-2xl mb-1">{project.title}</h3>
+                  {project.subtitle && (
+                    <p className="text-[#9caf88] text-[10px] uppercase tracking-widest mb-2 font-medium">{project.subtitle}</p>
+                  )}
                   <p className="text-gray-500 text-[10px] uppercase tracking-widest">{project.location} — {project.year}</p>
                 </div>
                 <div className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center group-hover:bg-white group-hover:text-black transition-all duration-300">
@@ -282,7 +271,10 @@ export default function App() {
 
               <div className="w-full md:w-80 flex flex-col justify-center">
                 <span className="text-[#9caf88] text-[10px] uppercase tracking-[0.5em] font-bold block mb-4">{selectedProject.category}</span>
-                <h2 className="text-serif text-4xl mb-6">{selectedProject.title}</h2>
+                <h2 className="text-serif text-4xl mb-2">{selectedProject.title}</h2>
+                {selectedProject.subtitle && (
+                  <p className="text-[#9caf88] text-[10px] uppercase tracking-widest mb-6 font-medium">{selectedProject.subtitle}</p>
+                )}
                 <p className="text-gray-400 text-sm leading-relaxed mb-8">
                   {selectedProject.description}
                 </p>
@@ -303,7 +295,7 @@ export default function App() {
       </AnimatePresence>
 
       {/* Precedent Studies Section */}
-      <section id="precedent-studies" className="py-32 px-6 md:px-12 bg-[#050505] border-t border-white/5">
+      <section id="precedent-studies" className="py-32 px-6 md:px-12 border-t border-white/5">
         <div className="max-w-6xl mx-auto">
           <div className="flex flex-col md:flex-row justify-between items-end mb-20">
             <div className="max-w-xl">
@@ -315,8 +307,8 @@ export default function App() {
             </div>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[1, 2, 3].map((i) => (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-5xl mx-auto">
+            {[1, 2].map((i) => (
               <motion.div 
                 key={i}
                 initial={{ opacity: 0, y: 20 }}
@@ -341,20 +333,20 @@ export default function App() {
         </div>
       </section>
 
-      {/* Other Works Section */}
-      <section id="other-works" className="py-32 px-6 md:px-12 bg-[#0a0a0a]">
+      {/* Personal Work Section */}
+      <section id="personal-work" className="py-32 px-6 md:px-12">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
           <div className="relative aspect-square md:aspect-video lg:aspect-square overflow-hidden">
             <img 
               src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2069&auto=format&fit=crop" 
-              alt="Other Works" 
+              alt="Personal Work" 
               className="w-full h-full object-cover grayscale opacity-50"
               referrerPolicy="no-referrer"
             />
             <div className="absolute inset-0 border-[20px] border-[#0a0a0a]"></div>
           </div>
           <div>
-            <span className="text-[#9caf88] text-[10px] uppercase tracking-[0.5em] font-bold block mb-6">Other Works</span>
+            <span className="text-[#9caf88] text-[10px] uppercase tracking-[0.5em] font-bold block mb-6">Personal Work</span>
             <div className="space-y-6 text-gray-400 text-sm leading-relaxed max-w-lg">
               <p>
                 Beyond architectural practice, this collection explores the intersection of spatial thinking and artistic expression. It includes a diverse range of work that I have worked on including art, sketches, and more.
@@ -372,7 +364,7 @@ export default function App() {
       </section>
 
       {/* Bio Section */}
-      <section id="bio" className="py-32 px-6 md:px-12 bg-[#050505]">
+      <section id="bio" className="py-32 px-6 md:px-12">
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-12 items-start">
             <div className="md:col-span-4">
