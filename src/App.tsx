@@ -353,11 +353,11 @@ const Home = () => {
         <div className="absolute inset-0 z-0 overflow-hidden">
           <motion.img 
             initial={{ scale: 1.1, opacity: 0 }}
-            animate={{ scale: 1, opacity: 0.3 }}
+            animate={{ scale: 1, opacity: 0.35 }}
             transition={{ duration: 2.5, ease: "easeOut" }}
-            src="/watercolor_cityscape.jpg"
-            alt="Architecture Background"
-            className="w-full h-full object-cover opacity-30"
+            src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=2070&auto=format&fit=crop"
+            alt="Watercolor Cityscape Background"
+            className="w-full h-full object-cover opacity-40"
             referrerPolicy="no-referrer"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-[#FFFBF5] via-transparent to-[#FFFBF5]"></div>
@@ -496,7 +496,7 @@ const Home = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
           <div className="relative aspect-square md:aspect-video lg:aspect-square overflow-hidden">
             <img 
-              src="/watercolor_cityscape.jpg" 
+              src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=2070&auto=format&fit=crop" 
               alt="Personal Work" 
               className="w-full h-full object-cover opacity-70"
               referrerPolicy="no-referrer"
