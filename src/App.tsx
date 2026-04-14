@@ -34,9 +34,9 @@ const projects = [
     subtitle: "Create Placemaking Studio | Professor Newman",
     course: "Create Placemaking Studio",
     year: "2023",
-    image: "https://images.unsplash.com/photo-1449156001935-d28bc1dc7281?q=80&w=2070&auto=format&fit=crop",
+    image: "https://raw.githubusercontent.com/setajw/Test-2/main/images/color_wheel_event.jpg",
     gallery: [
-      "https://images.unsplash.com/photo-1449156001935-d28bc1dc7281?q=80&w=2070&auto=format&fit=crop",
+      "https://raw.githubusercontent.com/setajw/Test-2/main/images/color_wheel_event.jpg",
       "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?q=80&w=2070&auto=format&fit=crop",
       "https://images.unsplash.com/photo-1526495124232-a02e18494d17?q=80&w=2070&auto=format&fit=crop"
     ],
@@ -78,13 +78,59 @@ const precedentStudies = [
 const personalWork = {
   title: "Personal Work",
   description: "Beyond architectural practice, this collection explores the intersection of spatial thinking and artistic expression. It includes a diverse range of work that I have worked on including art, sketches, and more.",
-  gallery: [
-    { src: "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2069&auto=format&fit=crop", title: "Abstract Form I", year: "2023" },
-    { src: "https://images.unsplash.com/photo-1513364776144-60967b0f800f?q=80&w=2071&auto=format&fit=crop", title: "Light Study", year: "2022" },
-    { src: "https://images.unsplash.com/photo-1515405299443-fbd3bb755f99?q=80&w=2080&auto=format&fit=crop", title: "Urban Sketch", year: "2023" },
-    { src: "https://images.unsplash.com/photo-1541963463532-d68292c34b19?q=80&w=2070&auto=format&fit=crop", title: "Materiality", year: "2021" },
-    { src: "https://images.unsplash.com/photo-1459749411177-042180ce673c?q=80&w=2070&auto=format&fit=crop", title: "Spatial Rhythm", year: "2023" },
-    { src: "https://images.unsplash.com/photo-1501812327411-aa63fdd3cc3e?q=80&w=2070&auto=format&fit=crop", title: "Shadow Play", year: "2022" }
+  categories: [
+    {
+      name: "Architectural Sketches",
+      items: [
+        { 
+          src: "https://raw.githubusercontent.com/setajw/Test-2/main/images/watercolor_cityscape_v2.jpg", 
+          title: "Arno River, Florence, IT", 
+          year: "2025",
+          medium: "Watercolor on paper"
+        },
+        { 
+          src: "https://raw.githubusercontent.com/setajw/Test-2/main/images/ss_plaza.jpg", 
+          title: "Piazza Della Santissima Annunziata, Florence, IT", 
+          year: "2025",
+          medium: "Watercolor on paper"
+        },
+        { 
+          src: "https://raw.githubusercontent.com/setajw/Test-2/main/images/watercolor_street.jpg", 
+          title: "Street in Florence, IT", 
+          year: "2025",
+          medium: "Watercolor & ink on paper"
+        }
+      ]
+    },
+    {
+      name: "Digital Portraits",
+      items: [
+        { 
+          src: "https://raw.githubusercontent.com/setajw/Test-2/main/images/digital_illustration_3.png", 
+          title: "PPRL GRL", 
+          year: "2024",
+          medium: "Digital Illustration"
+        },
+        { 
+          src: "https://raw.githubusercontent.com/setajw/Test-2/main/images/digital_illustration_1.jpg", 
+          title: "Olive", 
+          year: "2025",
+          medium: "Digital Illustration"
+        },
+        { 
+          src: "https://raw.githubusercontent.com/setajw/Test-2/main/images/digital_illustration_4.png", 
+          title: "Erchen Portrait", 
+          year: "2025",
+          medium: "Digital Illustration"
+        }
+      ]
+    },
+    {
+      name: "Misc",
+      items: [
+        { src: "https://images.unsplash.com/photo-1541963463532-d68292c34b19?q=80&w=2070&auto=format&fit=crop", title: "Materiality", year: "2021" }
+      ]
+    }
   ]
 };
 
@@ -249,7 +295,7 @@ const DetailPage = () => {
 
 const PersonalWorkPage = () => {
   const navigate = useNavigate();
-  const [selectedImage, setSelectedImage] = useState<typeof personalWork.gallery[0] | null>(null);
+  const [selectedImage, setSelectedImage] = useState<any | null>(null);
 
   return (
     <motion.div 
@@ -267,31 +313,46 @@ const PersonalWorkPage = () => {
       </button>
 
       <div className="max-w-7xl mx-auto">
-        <div className="mb-20">
-          <h1 className="text-serif text-5xl md:text-7xl mb-8 italic uppercase tracking-tighter">{personalWork.title}</h1>
-          <p className="text-gray-600 text-lg leading-relaxed max-w-3xl">
-            {personalWork.description}
-          </p>
+        <div className="mb-20 flex flex-col md:flex-row justify-between items-start md:items-end gap-8">
+          <div className="max-w-3xl">
+            <h1 className="text-serif text-5xl md:text-7xl mb-8 italic uppercase tracking-tighter">{personalWork.title}</h1>
+            <p className="text-gray-600 text-lg leading-relaxed">
+              {personalWork.description}
+            </p>
+          </div>
+          <div className="flex items-center space-x-3 text-[10px] uppercase tracking-[0.3em] text-gray-400 font-bold border border-black/10 px-4 py-2 rounded-full">
+            <div className="w-1.5 h-1.5 bg-black rounded-full animate-pulse"></div>
+            <span>Click to expand</span>
+          </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {personalWork.gallery.map((img, i) => (
-            <motion.div 
-              key={i}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
-              className="aspect-square overflow-hidden bg-gray-100 group cursor-pointer"
-              onClick={() => setSelectedImage(img)}
-            >
-              <img 
-                src={img.src} 
-                alt={img.title} 
-                className="w-full h-full object-cover grayscale opacity-80 group-hover:opacity-100 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700"
-                referrerPolicy="no-referrer"
-              />
-            </motion.div>
+        <div className="space-y-32">
+          {personalWork.categories.map((category, catIdx) => (
+            <div key={catIdx}>
+              <h2 className="text-serif text-3xl md:text-4xl mb-12 italic border-b border-black/10 pb-4 uppercase tracking-tighter">
+                {category.name}
+              </h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {category.items.map((img, i) => (
+                  <motion.div 
+                    key={i}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: i * 0.1 }}
+                    className="aspect-square overflow-hidden bg-gray-100 group cursor-pointer"
+                    onClick={() => setSelectedImage(img)}
+                  >
+                    <img 
+                      src={img.src} 
+                      alt={img.title} 
+                      className="w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700"
+                      referrerPolicy="no-referrer"
+                    />
+                  </motion.div>
+                ))}
+              </div>
+            </div>
           ))}
         </div>
       </div>
@@ -319,17 +380,20 @@ const PersonalWorkPage = () => {
                 <X size={32} />
               </button>
 
-              <div className="w-full h-full overflow-hidden bg-gray-100">
+              <div className="w-full h-full overflow-hidden">
                 <img 
                   src={selectedImage.src} 
                   alt={selectedImage.title} 
-                  className="w-full h-auto max-h-[70vh] object-contain mx-auto"
+                  className="w-full h-auto max-h-[85vh] object-contain mx-auto"
                   referrerPolicy="no-referrer"
                 />
               </div>
 
               <div className="w-full pt-8 text-center">
-                <h2 className="text-serif text-3xl md:text-4xl mb-2 italic">{selectedImage.title}</h2>
+                <h2 className="text-serif text-3xl md:text-4xl mb-1 italic">{selectedImage.title}</h2>
+                {('medium' in selectedImage) && (
+                  <p className="text-gray-500 text-[10px] uppercase tracking-widest mb-2">{selectedImage.medium}</p>
+                )}
                 <p className="text-[#262626] text-xs uppercase tracking-[0.4em] font-bold">{selectedImage.year}</p>
               </div>
             </motion.div>
@@ -355,7 +419,7 @@ const Home = () => {
             initial={{ scale: 1.1, opacity: 0 }}
             animate={{ scale: 1, opacity: 0.35 }}
             transition={{ duration: 2.5, ease: "easeOut" }}
-            src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=2070&auto=format&fit=crop"
+            src="https://raw.githubusercontent.com/setajw/Test-2/main/images/watercolor_cityscape.jpg"
             alt="Watercolor Cityscape Background"
             className="w-full h-full object-cover opacity-40"
             referrerPolicy="no-referrer"
@@ -494,11 +558,11 @@ const Home = () => {
       {/* Personal Work Section */}
       <section id="personal-work" className="py-32 px-6 md:px-12 border-t border-black/5">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
-          <div className="relative aspect-square md:aspect-video lg:aspect-square overflow-hidden">
+          <div className="relative overflow-hidden">
             <img 
-              src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=2070&auto=format&fit=crop" 
+              src="https://raw.githubusercontent.com/setajw/Test-2/main/images/watercolor_cityscape_v2.jpg" 
               alt="Personal Work" 
-              className="w-full h-full object-cover opacity-70"
+              className="w-full h-auto opacity-70 block"
               referrerPolicy="no-referrer"
             />
             <div className="absolute inset-0 border-[20px] border-[#FFFBF5]"></div>
