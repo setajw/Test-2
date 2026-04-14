@@ -153,7 +153,7 @@ const Navigation = ({ isMenuOpen, setIsMenuOpen }: { isMenuOpen: boolean, setIsM
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
             transition={{ type: "spring", damping: 25, stiffness: 200 }}
-            className="fixed inset-0 bg-[#FFFDFC] z-40 flex flex-col justify-center items-center space-y-8 text-3xl font-serif italic"
+            className="fixed inset-0 bg-[#FFFBF5] z-40 flex flex-col justify-center items-center space-y-8 text-3xl font-serif italic"
           >
             {["Projects", "Precedent Studies", "Personal Work", "About Me", "Contact"].map((item) => (
               <a 
@@ -184,7 +184,7 @@ const DetailPage = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="min-h-screen bg-[#FFFDFC] pt-32 pb-20 px-6 md:px-12"
+      className="min-h-screen bg-[#FFFBF5] pt-32 pb-20 px-6 md:px-12"
     >
       <button 
         onClick={() => navigate(-1)}
@@ -256,7 +256,7 @@ const PersonalWorkPage = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="min-h-screen bg-[#FFFDFC] pt-32 pb-20 px-6 md:px-12"
+      className="min-h-screen bg-[#FFFBF5] pt-32 pb-20 px-6 md:px-12"
     >
       <button 
         onClick={() => navigate(-1)}
@@ -355,32 +355,46 @@ const Home = () => {
             initial={{ scale: 1.1, opacity: 0 }}
             animate={{ scale: 1, opacity: 0.3 }}
             transition={{ duration: 2.5, ease: "easeOut" }}
-            src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop"
+            src="/watercolor_cityscape.jpg"
             alt="Architecture Background"
-            className="w-full h-full object-cover grayscale opacity-30"
+            className="w-full h-full object-cover opacity-30"
             referrerPolicy="no-referrer"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-[#FFFDFC] via-transparent to-[#FFFDFC]"></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-[#FFFBF5] via-transparent to-[#FFFBF5]"></div>
         </div>
 
-        <motion.div style={{ opacity, scale }} className="relative z-10 max-w-4xl">
+        <motion.div style={{ opacity, scale }} className="relative z-10 max-w-5xl">
           <motion.h1 
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4 }}
-            className="text-serif text-5xl md:text-[7vw] leading-[0.9] tracking-tighter mb-8"
+            className="text-serif text-6xl md:text-[9vw] leading-[0.9] tracking-tighter mb-8"
           >
             Seta Whitney <br />
-            <span className="italic text-[0.31em] tracking-[0.3em] block mt-6 uppercase font-sans font-semibold text-[#262626]">Architecture and Design</span>
+            <span className="italic text-[0.18em] tracking-[0.4em] block mt-6 uppercase font-sans font-semibold text-[#262626] whitespace-nowrap">Architecture Portfolio</span>
           </motion.h1>
-          <motion.p 
+          
+          <div className="relative inline-block">
+            <div className="absolute -inset-6 bg-gradient-to-r from-[#FFFBF5] via-[#FFFBF5]/80 to-transparent blur-2xl -z-10"></div>
+            <motion.p 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.6 }}
+              className="text-gray-700 text-sm md:text-lg max-w-lg leading-relaxed font-medium relative z-10"
+            >
+              A portfolio of architectural explorations, precedent studies, and personal artistic works focused on spatial clarity and material honesty.
+            </motion.p>
+          </div>
+          <motion.button
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.6 }}
-            className="text-gray-500 text-sm md:text-lg max-w-lg leading-relaxed font-light"
+            transition={{ delay: 0.8 }}
+            onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
+            className="mt-12 px-8 py-4 bg-black text-white text-xs uppercase tracking-[0.3em] font-bold hover:bg-[#262626] transition-all duration-300 flex items-center space-x-4 group"
           >
-            A portfolio of architectural explorations, precedent studies, and personal artistic works focused on spatial clarity and material honesty.
-          </motion.p>
+            <span>View Projects</span>
+            <ArrowRight size={16} className="group-hover:translate-x-2 transition-transform" />
+          </motion.button>
         </motion.div>
 
         <div className="absolute top-1/2 right-0 -translate-y-1/2 w-1/2 h-full opacity-10 pointer-events-none">
@@ -410,7 +424,7 @@ const Home = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.8, delay: index * 0.1 }}
-              className={`group cursor-pointer ${index % 2 !== 0 ? 'md:mt-32' : ''}`}
+              className="group cursor-pointer"
             >
               <Link to={`/project/${project.slug}`}>
                 <div className="relative aspect-[4/5] overflow-hidden bg-gray-100 mb-6">
@@ -482,12 +496,12 @@ const Home = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
           <div className="relative aspect-square md:aspect-video lg:aspect-square overflow-hidden">
             <img 
-              src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2069&auto=format&fit=crop" 
+              src="/watercolor_cityscape.jpg" 
               alt="Personal Work" 
-              className="w-full h-full object-cover grayscale opacity-70"
+              className="w-full h-full object-cover opacity-70"
               referrerPolicy="no-referrer"
             />
-            <div className="absolute inset-0 border-[20px] border-[#FFFDFC]"></div>
+            <div className="absolute inset-0 border-[20px] border-[#FFFBF5]"></div>
           </div>
           <div>
             <h2 className="text-serif text-4xl md:text-6xl mb-6 italic uppercase tracking-tighter">Personal Work</h2>
@@ -508,64 +522,84 @@ const Home = () => {
       </section>
 
       {/* About Me Section */}
-      <section id="about-me" className="py-32 px-6 md:px-12">
-        <div className="max-w-6xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-12 items-start">
-            <div className="md:col-span-4">
-              <h2 className="text-serif text-4xl md:text-5xl italic leading-tight uppercase tracking-tighter">About Me</h2>
-            </div>
-            <div className="md:col-span-8">
-              <motion.div 
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8 }}
-                className="space-y-8 text-gray-600 text-lg md:text-2xl font-light leading-relaxed"
-              >
+      <section id="about-me" className="py-40 px-6 md:px-12 border-t border-black/5">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-24">
+          <div className="md:col-span-4">
+            <h2 className="text-serif text-4xl md:text-5xl italic leading-tight uppercase tracking-tighter">About Me</h2>
+          </div>
+          <div className="md:col-span-8">
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="max-w-2xl"
+            >
+              <div className="space-y-8 text-gray-600 text-lg md:text-2xl font-light leading-relaxed mb-12">
                 <p>
-                  [placeholder text]
+                  I am an architectural designer focused on the intersection of spatial clarity, material honesty, and environmental context. My work explores how built environments can respond to human needs while maintaining a strong structural and aesthetic logic.
                 </p>
-                <div className="pt-8">
-                  <a 
-                    href="/resume-placeholder.pdf" 
-                    download="Seta_Whitney_Resume.pdf"
-                    className="inline-flex items-center space-x-4 px-8 py-4 bg-black text-white hover:bg-[#262626] transition-all duration-300 group"
-                  >
-                    <span className="text-xs uppercase tracking-[0.3em] font-bold">Download Resume</span>
-                    <Download size={16} className="group-hover:translate-y-1 transition-transform" />
-                  </a>
-                </div>
-              </motion.div>
-            </div>
+                <p>
+                  With a background in both traditional architectural practice and contemporary digital studies, I strive to create spaces that are both functional and evocative.
+                </p>
+              </div>
+              
+              <a 
+                href="/resume-placeholder.pdf" 
+                download="Seta_Whitney_Resume.pdf"
+                className="inline-flex items-center space-x-6 group border-b border-black pb-2 hover:border-black/20 transition-all duration-300"
+              >
+                <span className="text-xs uppercase tracking-[0.4em] font-bold">Download Full Resume</span>
+                <Download size={14} className="group-hover:translate-y-1 transition-transform" />
+              </a>
+            </motion.div>
           </div>
         </div>
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-32 px-6 md:px-12 border-t border-black/5">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-serif text-4xl md:text-6xl mb-12 italic uppercase tracking-tighter">Contact</h2>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-20">
-            <div className="flex flex-col items-center">
-              <div className="w-12 h-12 rounded-full bg-black/5 flex items-center justify-center mb-4">
-                <Mail size={20} className="text-[#262626]" />
-              </div>
-              <p className="text-[10px] uppercase tracking-widest text-gray-400 mb-2">Email</p>
-              <p className="text-sm">setawhitney@gmail.com</p>
-            </div>
-            <div className="flex flex-col items-center">
-              <div className="w-12 h-12 rounded-full bg-black/5 flex items-center justify-center mb-4">
-                <Linkedin size={20} className="text-[#262626]" />
-              </div>
-              <p className="text-[10px] uppercase tracking-widest text-gray-400 mb-2">Connect</p>
-              <p className="text-sm">linkedin.com/in/setawhitney</p>
-            </div>
+      <section id="contact" className="py-40 px-6 md:px-12 border-t border-black/5">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-24">
+          <div className="md:col-span-4">
+            <h2 className="text-serif text-4xl md:text-5xl italic leading-tight uppercase tracking-tighter">Contact</h2>
           </div>
+          <div className="md:col-span-8">
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="space-y-16"
+            >
+              <div>
+                <span className="text-[10px] uppercase tracking-[0.4em] text-gray-400 block mb-6">Inquiries</span>
+                <a 
+                  href="mailto:setajw@gmail.com" 
+                  className="text-base md:text-xl lg:text-2xl font-serif italic hover:text-gray-500 transition-colors break-all"
+                >
+                  setajw@gmail.com
+                </a>
+              </div>
 
-          <div className="flex justify-center space-x-8 pt-12 border-t border-black/5">
-            <Linkedin size={20} className="text-gray-400 hover:text-black cursor-pointer transition-colors" />
-            <Mail size={20} className="text-gray-400 hover:text-black cursor-pointer transition-colors" />
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-12 pt-12 border-t border-black/5">
+                <div>
+                  <span className="text-[10px] uppercase tracking-[0.4em] text-gray-400 block mb-4">Social</span>
+                  <a 
+                    href="https://linkedin.com/in/setawhitney" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-sm uppercase tracking-widest hover:text-gray-500 transition-colors flex items-center space-x-2"
+                  >
+                    <span>LinkedIn</span>
+                    <ArrowRight size={12} />
+                  </a>
+                </div>
+                <div>
+                  <span className="text-[10px] uppercase tracking-[0.4em] text-gray-400 block mb-4">Location</span>
+                  <p className="text-sm uppercase tracking-widest">Maryland, United States</p>
+                </div>
+              </div>
+            </motion.div>
           </div>
         </div>
       </section>
@@ -588,7 +622,7 @@ export default function App() {
   return (
     <Router>
       <ScrollToTop />
-      <div className="min-h-screen bg-[#FFFDFC] text-black selection:bg-[#262626] selection:text-white font-sans antialiased">
+      <div className="min-h-screen bg-[#FFFBF5] text-black selection:bg-[#262626] selection:text-white font-sans antialiased">
         <Navigation isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
         
         <Routes>
