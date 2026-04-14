@@ -446,7 +446,7 @@ const Home = () => {
               transition={{ delay: 0.6 }}
               className="text-gray-700 text-sm md:text-lg max-w-lg leading-relaxed font-medium relative z-10"
             >
-              A portfolio of architectural explorations, precedent studies, and personal artistic works focused on spatial clarity and material honesty.
+              Explore my portfolio of undergraduate architectural work, creative placemaking projects, precedent studies, and personal artwork. My work focuses on a human-centered approach, where I explore how spaces, images, and designs evoke emotion and connect with people.
             </motion.p>
           </div>
           <motion.button
@@ -463,6 +463,42 @@ const Home = () => {
 
         <div className="absolute top-1/2 right-0 -translate-y-1/2 w-1/2 h-full opacity-10 pointer-events-none">
           <div className="w-full h-full border-l border-black/20 transform skew-x-12"></div>
+        </div>
+      </section>
+
+      {/* About Me Section */}
+      <section id="about-me" className="py-40 px-6 md:px-12 border-t border-black/5">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-24">
+          <div className="md:col-span-4">
+            <h2 className="text-serif text-4xl md:text-5xl italic leading-tight uppercase tracking-tighter">About Me</h2>
+          </div>
+          <div className="md:col-span-8">
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="max-w-2xl"
+            >
+              <div className="space-y-8 text-gray-600 text-lg md:text-2xl font-light leading-relaxed mb-12">
+                <p>
+                  I am an architectural designer focused on the intersection of spatial clarity, material honesty, and environmental context. My work explores how built environments can respond to human needs while maintaining a strong structural and aesthetic logic.
+                </p>
+                <p>
+                  With a background in both traditional architectural practice and contemporary digital studies, I strive to create spaces that are both functional and evocative.
+                </p>
+              </div>
+              
+              <a 
+                href="/resume-placeholder.pdf" 
+                download="Seta_Whitney_Resume.pdf"
+                className="inline-flex items-center space-x-6 group border-b border-black pb-2 hover:border-black/20 transition-all duration-300"
+              >
+                <span className="text-xs uppercase tracking-[0.4em] font-bold">Download Full Resume</span>
+                <Download size={14} className="group-hover:translate-y-1 transition-transform" />
+              </a>
+            </motion.div>
+          </div>
         </div>
       </section>
 
@@ -581,42 +617,6 @@ const Home = () => {
                 <ArrowRight size={14} className="group-hover:translate-x-2 transition-transform" />
               </Link>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* About Me Section */}
-      <section id="about-me" className="py-40 px-6 md:px-12 border-t border-black/5">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-24">
-          <div className="md:col-span-4">
-            <h2 className="text-serif text-4xl md:text-5xl italic leading-tight uppercase tracking-tighter">About Me</h2>
-          </div>
-          <div className="md:col-span-8">
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-              className="max-w-2xl"
-            >
-              <div className="space-y-8 text-gray-600 text-lg md:text-2xl font-light leading-relaxed mb-12">
-                <p>
-                  I am an architectural designer focused on the intersection of spatial clarity, material honesty, and environmental context. My work explores how built environments can respond to human needs while maintaining a strong structural and aesthetic logic.
-                </p>
-                <p>
-                  With a background in both traditional architectural practice and contemporary digital studies, I strive to create spaces that are both functional and evocative.
-                </p>
-              </div>
-              
-              <a 
-                href="/resume-placeholder.pdf" 
-                download="Seta_Whitney_Resume.pdf"
-                className="inline-flex items-center space-x-6 group border-b border-black pb-2 hover:border-black/20 transition-all duration-300"
-              >
-                <span className="text-xs uppercase tracking-[0.4em] font-bold">Download Full Resume</span>
-                <Download size={14} className="group-hover:translate-y-1 transition-transform" />
-              </a>
-            </motion.div>
           </div>
         </div>
       </section>
