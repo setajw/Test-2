@@ -83,6 +83,12 @@ const personalWork = {
       name: "Architectural Sketches",
       items: [
         { 
+          src: "/images/aa_drawing.jpg", 
+          title: "Arched Gallery Sketch", 
+          year: "2026",
+          medium: "Pencil on paper"
+        },
+        { 
           src: "https://raw.githubusercontent.com/setajw/Test-2/main/images/watercolor_cityscape_v2.jpg", 
           title: "Arno River, Florence, IT", 
           year: "2025",
