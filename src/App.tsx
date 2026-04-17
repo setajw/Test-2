@@ -34,9 +34,9 @@ const projects = [
     subtitle: "Create Placemaking Studio | Professor Newman",
     course: "Create Placemaking Studio",
     year: "2023",
-    image: "https://raw.githubusercontent.com/setajw/Test-2/main/images/color_wheel_event.jpg",
+    image: "/images/color_wheel_event.jpg",
     gallery: [
-      "https://raw.githubusercontent.com/setajw/Test-2/main/images/color_wheel_event.jpg",
+      "/images/color_wheel_event.jpg",
       "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?q=80&w=2070&auto=format&fit=crop",
       "https://images.unsplash.com/photo-1526495124232-a02e18494d17?q=80&w=2070&auto=format&fit=crop"
     ],
@@ -95,19 +95,19 @@ const personalWork = {
           medium: "Pencil on paper"
         },
         { 
-          src: "https://raw.githubusercontent.com/setajw/Test-2/main/images/watercolor_cityscape_v2.jpg", 
+          src: "/images/watercolor_cityscape_v2.jpg", 
           title: "Arno River, Florence, IT", 
           year: "2025",
           medium: "Watercolor on paper"
         },
         { 
-          src: "https://raw.githubusercontent.com/setajw/Test-2/main/images/ss_plaza.jpg", 
+          src: "/images/ss_plaza.jpg", 
           title: "Piazza Della Santissima Annunziata, Florence, IT", 
           year: "2025",
           medium: "Watercolor on paper"
         },
         { 
-          src: "https://raw.githubusercontent.com/setajw/Test-2/main/images/watercolor_street.jpg", 
+          src: "/images/watercolor_street.jpg", 
           title: "Street in Florence, IT", 
           year: "2025",
           medium: "Watercolor & ink on paper"
@@ -118,19 +118,19 @@ const personalWork = {
       name: "Digital Portraits",
       items: [
         { 
-          src: "https://raw.githubusercontent.com/setajw/Test-2/main/images/digital_illustration_3.png", 
+          src: "/images/digital_illustration_3.png", 
           title: "PPRL GRL", 
           year: "2024",
           medium: "Digital Illustration"
         },
         { 
-          src: "https://raw.githubusercontent.com/setajw/Test-2/main/images/digital_illustration_1.jpg", 
+          src: "/images/digital_illustration_1.jpg", 
           title: "Olive", 
           year: "2025",
           medium: "Digital Illustration"
         },
         { 
-          src: "https://raw.githubusercontent.com/setajw/Test-2/main/images/digital_illustration_4.png", 
+          src: "/images/digital_illustration_4.png", 
           title: "Erchen Portrait", 
           year: "2025",
           medium: "Digital Illustration"
@@ -431,7 +431,7 @@ const Home = () => {
             initial={{ scale: 1.1, opacity: 0 }}
             animate={{ scale: 1, opacity: 0.35 }}
             transition={{ duration: 2.5, ease: "easeOut" }}
-            src="https://raw.githubusercontent.com/setajw/Test-2/main/images/watercolor_cityscape.jpg"
+            src="/images/watercolor_cityscape.jpg"
             alt="Watercolor Cityscape Background"
             className="w-full h-full object-cover opacity-40"
             referrerPolicy="no-referrer"
@@ -608,7 +608,7 @@ const Home = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
           <div className="relative overflow-hidden">
             <img 
-              src="https://raw.githubusercontent.com/setajw/Test-2/main/images/watercolor_cityscape_v2.jpg" 
+              src="/images/watercolor_cityscape_v2.jpg" 
               alt="Personal Work" 
               className="w-full h-auto opacity-70 block"
               referrerPolicy="no-referrer"
