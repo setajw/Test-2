@@ -502,8 +502,8 @@ const Home = () => {
               </div>
               
               <a 
-                href="/Files/Seta_Whitney_Resume.png" 
-                download="Seta_Whitney_Resume.png"
+                href="/Files/Seta_Whitney_Resume.pdf" 
+                download="Seta_Whitney_Resume.pdf"
                 className="inline-flex items-center space-x-6 group border-b border-black pb-2 hover:border-black/20 transition-all duration-300"
               >
                 <span className="text-xs uppercase tracking-[0.4em] font-bold">Download Full Resume</span>
