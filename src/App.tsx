@@ -80,20 +80,8 @@ const personalWork = {
   description: "Beyond architectural practice, this collection explores the intersection of spatial thinking and artistic expression. It includes a diverse range of work that I have worked on including art, sketches, and more.",
   categories: [
     {
-      name: "Architectural Sketches",
+      name: "Architectural Sketches & Watercolor",
       items: [
-        { 
-          src: "https://raw.githubusercontent.com/setajw/Test-2/main/images/aa_drawing.jpg", 
-          title: "Arched Gallery Sketch", 
-          year: "2026",
-          medium: "Pencil on paper"
-        },
-        { 
-          src: "https://raw.githubusercontent.com/setajw/Test-2/main/images/plaza_sketch_horizontal.jpg", 
-          title: "Arched Gallery Study (Horizontal)", 
-          year: "2026",
-          medium: "Pencil on paper"
-        },
         { 
           src: "https://raw.githubusercontent.com/setajw/Test-2/main/images/watercolor_cityscape_v2.jpg", 
           title: "Arno River, Florence, IT", 
@@ -418,9 +406,14 @@ const PersonalWorkPage = () => {
 
 const Home = () => {
   const containerRef = useRef(null);
-  const { scrollYProgress } = useScroll();
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end start"]
+  });
   const opacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
   const scale = useTransform(scrollYProgress, [0, 0.2], [1, 0.95]);
+  const bgOpacity = useTransform(scrollYProgress, [0, 0.5], [0.35, 0]);
+  const bgScale = useTransform(scrollYProgress, [0, 0.5], [1, 1.1]);
 
   return (
     <div ref={containerRef}>
@@ -430,10 +423,11 @@ const Home = () => {
           <motion.img 
             initial={{ scale: 1.1, opacity: 0 }}
             animate={{ scale: 1, opacity: 0.35 }}
+            style={{ opacity: bgOpacity, scale: bgScale }}
             transition={{ duration: 2.5, ease: "easeOut" }}
-            src="https://raw.githubusercontent.com/setajw/Test-2/main/images/watercolor_cityscape.jpg"
-            alt="Watercolor Cityscape Background"
-            className="w-full h-full object-cover opacity-40"
+            src="https://raw.githubusercontent.com/setajw/Test-2/main/images/plaza_sketch_horizontal.jpg"
+            alt="Plaza Sketch Background"
+            className="w-full h-full object-cover"
             referrerPolicy="no-referrer"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-[#FFFBF5] via-transparent to-[#FFFBF5]"></div>
@@ -494,16 +488,17 @@ const Home = () => {
             >
               <div className="space-y-8 text-gray-600 text-lg md:text-2xl font-light leading-relaxed mb-12">
                 <p>
-                  I am an architectural designer focused on the intersection of spatial clarity, material honesty, and environmental context. My work explores how built environments can respond to human needs while maintaining a strong structural and aesthetic logic.
+                  I am a senior undergraduate architecture student pursuing a B.A. in Architecture, a minor in Creative Placemaking, and a minor in Real Estate Development. My work is based on one of my core beliefs: that architecture and the built environment should connect with humans and nature.
                 </p>
                 <p>
-                  With a background in both traditional architectural practice and contemporary digital studies, I strive to create spaces that are both functional and evocative.
+                  I strive to design spaces that are innovative and sustainable, while harmonizing with their natural surroundings and connect with the people who inhabit them.
                 </p>
               </div>
               
               <a 
                 href="https://raw.githubusercontent.com/setajw/Test-2/main/Files/Seta_Whitney_Resume.pdf" 
-                download="Seta_Whitney_Resume.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center space-x-6 group border-b border-black pb-2 hover:border-black/20 transition-all duration-300"
               >
                 <span className="text-xs uppercase tracking-[0.4em] font-bold">Download Full Resume</span>
@@ -634,49 +629,46 @@ const Home = () => {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-40 px-6 md:px-12 border-t border-black/5">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-24">
-          <div className="md:col-span-4">
-            <h2 className="text-serif text-4xl md:text-5xl italic leading-tight uppercase tracking-tighter">Contact</h2>
-          </div>
-          <div className="md:col-span-8">
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-              className="space-y-16"
-            >
-              <div>
-                <span className="text-[10px] uppercase tracking-[0.4em] text-gray-400 block mb-6">Inquiries</span>
+      <section id="contact" className="py-40 px-6 md:px-12 border-t border-black/5 text-center">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-serif text-4xl md:text-6xl italic leading-tight uppercase tracking-tighter mb-20">Contact</h2>
+          
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="space-y-20"
+          >
+            <div>
+              <span className="text-[10px] uppercase tracking-[0.4em] text-gray-400 block mb-6">Inquiries</span>
+              <a 
+                href="mailto:setajw@gmail.com" 
+                className="text-lg md:text-2xl font-serif italic hover:text-gray-500 transition-colors break-all"
+              >
+                setajw@gmail.com
+              </a>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-12 pt-20 border-t border-black/5">
+              <div className="flex flex-col items-center">
+                <span className="text-[10px] uppercase tracking-[0.4em] text-gray-400 block mb-4">Social</span>
                 <a 
-                  href="mailto:setajw@gmail.com" 
-                  className="text-base md:text-xl lg:text-2xl font-serif italic hover:text-gray-500 transition-colors break-all"
+                  href="https://linkedin.com/in/setawhitney" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-sm uppercase tracking-widest hover:text-gray-500 transition-colors flex items-center space-x-2"
                 >
-                  setajw@gmail.com
+                  <span>LinkedIn</span>
+                  <ArrowRight size={12} />
                 </a>
               </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-12 pt-12 border-t border-black/5">
-                <div>
-                  <span className="text-[10px] uppercase tracking-[0.4em] text-gray-400 block mb-4">Social</span>
-                  <a 
-                    href="https://linkedin.com/in/setawhitney" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="text-sm uppercase tracking-widest hover:text-gray-500 transition-colors flex items-center space-x-2"
-                  >
-                    <span>LinkedIn</span>
-                    <ArrowRight size={12} />
-                  </a>
-                </div>
-                <div>
-                  <span className="text-[10px] uppercase tracking-[0.4em] text-gray-400 block mb-4">Location</span>
-                  <p className="text-sm uppercase tracking-widest">Maryland, United States</p>
-                </div>
+              <div className="flex flex-col items-center">
+                <span className="text-[10px] uppercase tracking-[0.4em] text-gray-400 block mb-4">Location</span>
+                <p className="text-sm uppercase tracking-widest">Maryland, United States</p>
               </div>
-            </motion.div>
-          </div>
+            </div>
+          </motion.div>
         </div>
       </section>
 
