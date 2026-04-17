@@ -83,6 +83,18 @@ const personalWork = {
       name: "Architectural Sketches & Watercolor",
       items: [
         { 
+          src: "https://raw.githubusercontent.com/setajw/Test-2/main/images/aa_drawing.jpg", 
+          title: "Arched Gallery Sketch", 
+          year: "2026",
+          medium: "Pencil on paper"
+        },
+        { 
+          src: "https://raw.githubusercontent.com/setajw/Test-2/main/images/plaza_sketch_horizontal.jpg", 
+          title: "Arched Gallery Study (Horizontal)", 
+          year: "2026",
+          medium: "Pencil on paper"
+        },
+        { 
           src: "https://raw.githubusercontent.com/setajw/Test-2/main/images/watercolor_cityscape_v2.jpg", 
           title: "Arno River, Florence, IT", 
           year: "2025",
@@ -425,9 +437,9 @@ const Home = () => {
             animate={{ scale: 1, opacity: 0.35 }}
             style={{ opacity: bgOpacity, scale: bgScale }}
             transition={{ duration: 2.5, ease: "easeOut" }}
-            src="https://raw.githubusercontent.com/setajw/Test-2/main/images/plaza_sketch_horizontal.jpg"
-            alt="Plaza Sketch Background"
-            className="w-full h-full object-cover"
+            src="https://raw.githubusercontent.com/setajw/Test-2/main/images/watercolor_cityscape.jpg"
+            alt="Watercolor Cityscape Background"
+            className="w-full h-full object-cover opacity-40"
             referrerPolicy="no-referrer"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-[#FFFBF5] via-transparent to-[#FFFBF5]"></div>
