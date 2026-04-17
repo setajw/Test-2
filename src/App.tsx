@@ -89,6 +89,12 @@ const personalWork = {
           medium: "Pencil on paper"
         },
         { 
+          src: "/images/plaza_sketch_horizontal.jpg", 
+          title: "Arched Gallery Study (Horizontal)", 
+          year: "2026",
+          medium: "Pencil on paper"
+        },
+        { 
           src: "https://raw.githubusercontent.com/setajw/Test-2/main/images/watercolor_cityscape_v2.jpg", 
           title: "Arno River, Florence, IT", 
           year: "2025",
