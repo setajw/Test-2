@@ -18,9 +18,9 @@ const projects = [
     subtitle: "Studio I | Professor Abrams",
     course: "Studio I",
     year: "2024",
-    image: "https://raw.githubusercontent.com/setajw/Test-2/27cd631c3bc85a41fb5ae774c6abcfdf84af76b1/Untitled-3.jpg",
+    image: "https://raw.githubusercontent.com/setajw/Test-2/main/images/p3_front.jpg",
     gallery: [
-      "https://raw.githubusercontent.com/setajw/Test-2/27cd631c3bc85a41fb5ae774c6abcfdf84af76b1/Untitled-3.jpg",
+      "https://raw.githubusercontent.com/setajw/Test-2/main/images/p3_front.jpg",
       "https://images.unsplash.com/photo-1518005020250-68594f214602?q=80&w=2070&auto=format&fit=crop",
       "https://images.unsplash.com/photo-1470723710355-95304d8aece4?q=80&w=2070&auto=format&fit=crop",
       "https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=2070&auto=format&fit=crop"
@@ -77,7 +77,7 @@ const precedentStudies = [
 
 const personalWork = {
   title: "Personal Work",
-  description: "Beyond architectural practice, this collection explores the intersection of spatial thinking and artistic expression. It includes a diverse range of work that I have worked on including art, sketches, and more.",
+  description: "View my collection of personal artwork, ranging from architectural sketches to digital art.",
   categories: [
     {
       name: "Architectural Sketches & Watercolor",
@@ -316,9 +316,6 @@ const PersonalWorkPage = () => {
         <div className="mb-20 flex flex-col md:flex-row justify-between items-start md:items-end gap-8">
           <div className="max-w-3xl">
             <h1 className="text-serif text-5xl md:text-7xl mb-8 italic uppercase tracking-tighter">{personalWork.title}</h1>
-            <p className="text-gray-600 text-lg leading-relaxed">
-              {personalWork.description}
-            </p>
           </div>
           <div className="flex items-center space-x-3 text-[10px] uppercase tracking-[0.3em] text-gray-400 font-bold border border-black/10 px-4 py-2 rounded-full">
             <div className="w-1.5 h-1.5 bg-black rounded-full animate-pulse"></div>
@@ -401,6 +398,36 @@ const PersonalWorkPage = () => {
         )}
       </AnimatePresence>
     </motion.div>
+  );
+};
+
+const personalWorkImages = personalWork.categories.flatMap(cat => cat.items.map(item => item.src));
+
+const PersonalWorkRotator = () => {
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setIndex((prev) => (prev + 1) % personalWorkImages.length);
+    }, 4000);
+    return () => clearInterval(timer);
+  }, []);
+
+  return (
+    <div className="w-full h-full relative">
+      <AnimatePresence mode="wait">
+        <motion.img
+          key={index}
+          src={personalWorkImages[index]}
+          initial={{ opacity: 0, scale: 1.1 }}
+          animate={{ opacity: 0.7, scale: 1 }}
+          exit={{ opacity: 0, scale: 1.05 }}
+          transition={{ duration: 1.5, ease: "easeInOut" }}
+          className="w-full h-full object-cover"
+          referrerPolicy="no-referrer"
+        />
+      </AnimatePresence>
+    </div>
   );
 };
 
@@ -491,12 +518,13 @@ const Home = () => {
                   I am a senior undergraduate architecture student pursuing a B.A. in Architecture, a minor in Creative Placemaking, and a minor in Real Estate Development. My work is based on one of my core beliefs: that architecture and the built environment should connect with humans and nature.
                 </p>
                 <p>
-                  I strive to design spaces that are innovative and sustainable, while harmonizing with their natural surroundings and connect with the people who inhabit them.
+                  My goal is to design spaces that are innovative yet sustainable, while harmonizing with their natural surroundings and connect with the people that exist in them.
                 </p>
               </div>
               
               <a 
-                href="https://raw.githubusercontent.com/setajw/Test-2/main/Files/Seta_Whitney_Resume.pdf" 
+                href="https://raw.githubusercontent.com/setajw/Test-2/main/images/Seta%20Whitney%20Resume%20PDF.pdf" 
+                download="Seta_Whitney_Resume.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center space-x-6 group border-b border-black pb-2 hover:border-black/20 transition-all duration-300"
@@ -515,7 +543,7 @@ const Home = () => {
           <div className="max-w-xl">
             <h2 className="text-serif text-4xl md:text-6xl mb-6 italic uppercase tracking-tighter">Projects</h2>
             <p className="text-gray-600 text-sm leading-relaxed">
-              A selection of architectural projects exploring the intersection of form, function, and environment.
+              A selection of projects created during my undergraduate studies in Architecture and Creative Placemaking.
             </p>
           </div>
           <div className="mt-8 md:mt-0 text-[10px] uppercase tracking-[0.3em] text-gray-400">
@@ -565,7 +593,7 @@ const Home = () => {
           <div className="max-w-xl">
             <h2 className="text-serif text-4xl md:text-6xl mb-6 italic uppercase tracking-tighter">Precedent Studies</h2>
             <p className="text-gray-600 text-sm leading-relaxed">
-              A collection of analytical studies exploring historical and contemporary architectural precedents. These works focus on understanding spatial hierarchies, structural systems, and material logic.
+              Exploring structure, light quality, geometry, and form.
             </p>
           </div>
         </div>
@@ -601,23 +629,15 @@ const Home = () => {
       {/* Personal Work Section */}
       <section id="personal-work" className="py-32 px-6 md:px-12 border-t border-black/5">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
-          <div className="relative overflow-hidden">
-            <img 
-              src="https://raw.githubusercontent.com/setajw/Test-2/main/images/watercolor_cityscape_v2.jpg" 
-              alt="Personal Work" 
-              className="w-full h-auto opacity-70 block"
-              referrerPolicy="no-referrer"
-            />
-            <div className="absolute inset-0 border-[20px] border-[#FFFBF5]"></div>
+          <div className="relative aspect-[4/3] overflow-hidden bg-gray-100">
+            <PersonalWorkRotator />
+            <div className="absolute inset-0 border-[20px] border-[#FFFBF5] pointer-events-none"></div>
           </div>
           <div>
             <h2 className="text-serif text-4xl md:text-6xl mb-6 italic uppercase tracking-tighter">Personal Work</h2>
             <div className="space-y-6 text-gray-600 text-sm leading-relaxed max-w-lg">
               <p>
-                Beyond architectural practice, this collection explores the intersection of spatial thinking and artistic expression. It includes a diverse range of work that I have worked on including art, sketches, and more.
-              </p>
-              <p>
-                These pieces represent a continuous exploration of form, light, and shadow, serving as both a foundation for and a departure from structural constraints.
+                View my collection of personal artwork, ranging from architectural sketches to digital art.
               </p>
               <Link to="/personal-work" className="pt-4 flex items-center space-x-4 text-black hover:text-[#262626] transition-colors group">
                 <span className="text-xs uppercase tracking-widest font-semibold">View Collection</span>
@@ -654,7 +674,7 @@ const Home = () => {
               <div className="flex flex-col items-center">
                 <span className="text-[10px] uppercase tracking-[0.4em] text-gray-400 block mb-4">Social</span>
                 <a 
-                  href="https://linkedin.com/in/setawhitney" 
+                  href="https://www.linkedin.com/in/seta-whitney" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="text-sm uppercase tracking-widest hover:text-gray-500 transition-colors flex items-center space-x-2"
